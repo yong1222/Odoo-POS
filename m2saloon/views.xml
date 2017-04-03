@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <template id="assets_backend" name="point_of_sale assests" inherit_id="web.assests_backend">
+        <template id="assets_frontend" name="point_of_sale assests" inherit_id="web.assests_common">
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/m2saloon/static/src/js/pos_sales_person.js"></script>
                 <script type="text/javascript" src="/m2saloon/static/src/js/pos_assist.js"></script>

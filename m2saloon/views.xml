@@ -2,80 +2,13 @@
 <openerp>
     <data>
 
-        <template id="assets_frontend" name="point_of_sale assests" inherit_id="web.assests_common">
+        <template id="assets_frontend" inherit_id="web.assets_common">
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/m2saloon/static/src/js/pos_sales_person.js"></script>
                 <script type="text/javascript" src="/m2saloon/static/src/js/pos_assist.js"></script>
+                <script type="text/javascript" src="/m2saloon/static/src/js/main.js"></script>
             </xpath>
         </template>
-
-        <!--
-        <record id="assists_line_tree" model="ir.ui.view">
-            <field name="name">assists.line.tree</field>
-            <field name="model">pos.order</field>
-            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
-            <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page string="Assistant Point">
-                        <tree string="Assistant_Point" editable="top">
-                            <field name="assist_point_ids"/>
-
-                            <field name="order_id"/>
-                            <field name="product_id"/>
-                            <field name="price"/>
-
-                        </tree>
-                    </page>
-                </notebook>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="assists_tree_view">
-            <field name="name">assists.line.tree</field>
-            <field name="model">assists.line</field>
-            <field name="arch" type="xml">
-                <tree string="Assistant Point Form" editable="1">
-                    <field name="name" invisible="1"/>
-                    <field name="assist_id"/>
-                    <field name="order_id" invisible="1"/>
-                    <field name="product_id"/>
-                    <field name="price"/>
-                </tree>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="assists_form_view">
-            <field name="name">assists.line.form</field>
-            <field name="model">assists.line</field>
-            <field name="arch" type="xml">
-                <form string="Assistant Point Form">
-                    <sheet>
-                        <group>
-                            <field name="name" invisible="1"/>
-                            <field name="assist_id"/>
-                            <field name="order_id" invisible="1"/>
-                            <field name="product_id"/>
-                            <field name="price"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="assists_list_action">
-            <field name="name">Assistants Point</field>
-            <field name="res_model">assists.line</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Create your assistants</p>
-                <field name="assists_id"/>
-                <field name="order_id" invisible="1"/>
-                <field name="product_id"/>
-                <field name="price"/>
-            </field>
-        </record>
-        -->
 
     </data>
 </openerp>

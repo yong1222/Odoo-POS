@@ -1,24 +1,43 @@
-odoo.define('m2saloon.assistant', function (require) {
-  "use strict";
+function openerp_m2saloon_assistant(instance, module) {
 
-  var models = require('point_of_sale.models');
-  var screens = require('point_of_sale.screens');
-  var core = require('web.core');
+  var QWeb = instance.web.qweb;
+  var _t   = instance.web._t;
 
-  var QWeb = core.qweb;
-  var _t   = core._t;
+  // var _super_orderline = models.Orderline.prototype;
 
-  console.log("----->POS JS Loaded3")
+  module.PosWidget.include({
+    build_widgets: function(){
+      var self = this;
+      this._super();
 
-  var AssistantButton = screens.ActionButtonWidget.extend({
-    template: "AddAssistantButton",
+      var assistant = $(QWeb.render('AssistantButton'));
 
+      assistant.appendTo(this.$('.control-buttons'));
+      this.$('.control-buttons').removeClass('oe_hidden');
+    },
   });
-
-  screens.define_action_button({
-    'name': 'assistant',
-    'widget': AssistantButton,
-  });
-
-  console.log("------POS JS Loaded4------")
-});
+}
+// odoo.define('m2saloon.assistant', function (require) {
+//   "use strict";
+//
+//   var models = require('point_of_sale.models');
+//   var screens = require('point_of_sale.screens');
+//   var core = require('web.core');
+//
+//   var QWeb = core.qweb;
+//   var _t   = core._t;
+//
+//   console.log("----->POS JS Loaded3")
+//
+//   var AssistantButton = screens.ActionButtonWidget.extend({
+//     template: "AddAssistantButton",
+//
+//   });
+//
+//   screens.define_action_button({
+//     'name': 'assistant',
+//     'widget': AssistantButton,
+//   });
+//
+//   console.log("------POS JS Loaded4------")
+// });

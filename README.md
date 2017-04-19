@@ -1,1 +1,1 @@
-# Odoo-POS
+# Newbie in Odoo

@@ -1,5 +1,6 @@
 from openerp import api, models, fields
 
+# Add Assistant model into database
 class assistant(models.Model):
     _name = 'pos.assistant.line'
 
@@ -8,6 +9,7 @@ class assistant(models.Model):
     name = fields.Selection([('shampoo', 'Shampoo'), ('cut', 'Cut'), ('perm', 'Perm'), ('color', 'Color'), ('dry', 'Dry'), ('other', 'Other')], string="Service")
     price = fields.Float(string="Price")
 
+# Add two fields into pos.order.line model
 class pos_assistant_line(models.Model):
     _inherit = 'pos.order.line'
 

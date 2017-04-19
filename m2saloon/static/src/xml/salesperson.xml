@@ -1,62 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-
-    <!-- <t t-extend="Orderline">
-        <t t-jquery=".info-list" t-operation="append">
-            <t t-if="line.get_note()">
-                <li class="info orderline-note">
-                    <i class='fa fa-user-plus'/>
-                    <t t-esc="line.get_note()" />
-                </li>
-            </t>
-        </t>
-    </t> -->
-
+    <!-- Salesperson button -->
     <t t-name="AssignSalesPerson">
         <span class='control-button salesperson'>
             <i class='fa fa-user' /> Sales Person
         </span>
     </t>
 
-    <t t-name="SalesPersonListScreenWidget">
-        <div class="clientlist-screen screen">
-            <div class="screen-content">
-                <section class="top-content">
-                    <span class='button back'>
-                        <i class='fa fa-angle-double-left'></i>
-                        Cancel
+    <!-- Salesperson selection screen -->
+    <t t-name="SalesPersonSelectionScreenWidget">
+        <div class="pos-select-salesperson screen">
+            <div class="select-wrapper">
+                <div class="select-title">
+                    <span class="">
+                        Select Sales Person
                     </span>
-                    <span>
-                        <h1>Select Sales Person</h1>
-                    </span>
-                    <span class='button next oe_hidden highlight'>
-                        Set Sales Person
-                        <i class='fa fa-angle-double-right'></i>
-                    </span>
-                </section>
-                <section class="full-content">
-                    <div class='window'>
-                        <section class='subwindow'>
-                            <div class='subwindow-container'>
-                                <div class='subwindow-container-fix touch-scrollable scrollable-y'>
-                                    <table class='client-list'>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class='client-list-contents'>
-                                          <!-- <td><t t-esc="item.name"/></td> -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </section>
+                </div>
+                <span class='button back'>
+                    <i class='fa fa-angle-double-left'></i>
+                    Cancel
+                </span>
+                <div class="select-wrapper-item">
+                    <t t-call="SalesPersonSelectionItem" />
+                </div>
             </div>
         </div>
     </t>
 
+    <!-- Salesperson item -->
+    <t t-name="SalesPersonSelectionItem">
+        <t t-foreach="widget.options" t-as="salesperson">
+            <div class="salesperson-item" t-att-data-salesperson-id="salesperson.id" t-att-style="'background: ' + widget.color_random_generator()">
+                <div class="salesperson-item-image">
+                    <img t-att-src="'data:image/png;base64,' + salesperson.image_small" />
+                </div>
+                <div class="salesperson-item-info">
+                    <div class="salesperson-name">
+                        <span t-esc="salesperson.name" />
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <!-- Append Salesperson into each orderline -->
+    <t t-extend="Orderline">
+        <t t-jquery=".info-list" t-operation="append">
+            <t t-if="line.get_salesperson().name">
+                <li class="info">Sales Person: <span t-esc="line.get_salesperson().name" /></li>
+            </t>
+        </t>
+    </t>
 
 </templates>

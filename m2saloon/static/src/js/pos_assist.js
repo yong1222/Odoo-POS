@@ -41,3 +41,4 @@ function openerp_m2saloon_assistant(instance, module) {
 //
 //   console.log("------POS JS Loaded4------")
 // });
+}

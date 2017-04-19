@@ -5,18 +5,18 @@ function openerp_m2saloon_assistant(instance, module) {
 
   // var _super_orderline = models.Orderline.prototype;
 
-  module.PosWidget.include({
-    build_widgets: function(){
-      var self = this;
-      this._super();
-
-      var assistant = $(QWeb.render('AssistantButton'));
-
-      assistant.appendTo(this.$('.control-buttons'));
-      this.$('.control-buttons').removeClass('oe_hidden');
-    },
-  });
-}
+//   module.PosWidget.include({
+//     build_widgets: function(){
+//       var self = this;
+//       this._super();
+//
+//       var assistant = $(QWeb.render('AssistantButton'));
+//
+//       assistant.appendTo(this.$('.control-buttons'));
+//       this.$('.control-buttons').removeClass('oe_hidden');
+//     },
+//   });
+// }
 // odoo.define('m2saloon.assistant', function (require) {
 //   "use strict";
 //

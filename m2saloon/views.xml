@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <!-- Append css file -->
+        <template id="index" name="select_salesperson_module_index index"
+            inherit_id="point_of_sale.index">
+            <xpath expr="//link[@id='pos-stylesheet']" position="after">
+                <link rel="stylesheet" href="/m2saloon/static/src/css/m2saloon.css"/>
+            </xpath>
+        </template>
 
-        <template id="assets_frontend" inherit_id="web.assets_common">
+        <template id="assets_backend" name="select_salesperson_module assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
+                <script type="text/javascript" src="/m2saloon/static/src/js/db.js"></script>
+                <script type="text/javascript" src="/m2saloon/static/src/js/models.js"></script>
+                <script type="text/javascript" src="/m2saloon/static/src/js/screens.js"></script>
+                <script type="text/javascript" src="/m2saloon/static/src/js/widget.js"></script>
                 <script type="text/javascript" src="/m2saloon/static/src/js/pos_sales_person.js"></script>
                 <script type="text/javascript" src="/m2saloon/static/src/js/pos_assist.js"></script>
                 <script type="text/javascript" src="/m2saloon/static/src/js/main.js"></script>
             </xpath>
         </template>
 
+        <!-- Overwrite POS order form -->
+        <record model="ir.ui.view" id="service_person_field_test">
+            <field name="name">serviceperson.line.field.test</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <page string="Products" position="replace">
+                    <page string="Product &amp; Service">
+                        <field name="lines">
+                            <tree string="Order line">
+                                <field name="product_id"/>
+                                <field name="qty"/>
+                                <field name="price_unit"/>
+                                <field name="discount"/>
+                                <field name="price_subtotal"/>
+                                <field name="price_subtotal_incl"/>
+                                <field name="service_point_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <!-- Add assistant tree view into orderline form -->
+        <record id="assists_line_tree" model="ir.ui.view">
+            <field name="name">pos.assistant.line.tree</field>
+            <field name="model">pos.order.line</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_line_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="create_date" position="after">
+                        <field name="service_point_id"/>
+                    </field>
+                    <group position="after">
+                        <notebook>
+                            <page string="Assistant Point">
+                                <tree string="Assistant_Point" editable="top">
+                                    <field name="assistant_ids"/>
+                                </tree>
+                            </page>
+                        </notebook>
+                    </group>
+                </data>
+            </field>
+        </record>
+        
+        <!-- fields in Assistant tree view -->
+        <record model="ir.ui.view" id="assistant_tree_view">
+            <field name="name">assistant.line.tree</field>
+            <field name="model">pos.assistant.line</field>
+            <field name="arch" type="xml">
+                <tree string="Assistant Point Tree" editable="1">
+                    <field name="order_line_id" invisible="1"/>
+                    <field name="assistant_id"/>
+                    <field name="name"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
     </data>
 </openerp>
